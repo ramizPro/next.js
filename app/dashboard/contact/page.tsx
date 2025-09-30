@@ -1,8 +1,8 @@
 export const dynamic = "force-dynamic";
 
-import CardWrapper from '@/app/ui/dashboard/cards';
-import RevenueChart from '@/app/ui/dashboard/revenue-chart';
-import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
+import CardWrapper from '@/app/dashboard//contact/cards';
+import RevenueChart from '@/app/dashboard/contact/revenue-chart';
+//import LatestInvoices from '@/app/dashboard/contact/latest-invoices';
 import { lusitana } from '@/app/ui/fonts';
 //import { fetchCardData } from '@/app/lib/data'; // Remove fetchLatestInvoices
 import { Suspense } from 'react';
@@ -15,7 +15,7 @@ export default async function Page() {
   return (
     <main>
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
-        Dashboard
+        Contact
       </h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <Suspense fallback={<CardsSkeleton />}>
@@ -26,9 +26,15 @@ export default async function Page() {
         <Suspense fallback={<RevenueChartSkeleton />}>
           <RevenueChart />
         </Suspense>
-        <Suspense fallback={<LatestInvoicesSkeleton />}>
-          <LatestInvoices/>
-        </Suspense>
+        <form>
+            <label>Your message:</label>
+                <input type="text" id="message" name="message"></input>
+            <label>Your email:</label>
+                <input type="email" id="email" name="email"></input>
+            <button type="submit" className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                Send
+            </button>
+        </form>
       </div>
     </main>
   );
